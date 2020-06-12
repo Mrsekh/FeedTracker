@@ -39,7 +39,7 @@ app.listen(PORT,() => {
 
 if(process.env.NODE_ENV === 'production') {
     // express will serve production asset 
-    app.use(express.static('../client/build'));
+    app.use(express.static('client/build'));
 
     // express will server index.html if it doesn't recognize the route
     const path = require('path');

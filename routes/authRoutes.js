@@ -8,8 +8,15 @@ module.exports = app => {
     }));
 
     app.get('/auth/google/callback', passport.authenticate('google'), (req,res) => {
-        // res.redirect('/surveys');
-       res.redirect('http://localhost:3000/surveys');
+
+
+        // Added temp solution for redirection issue
+        if(process.env.NODE_ENV === 'production') {
+            res.redirect('/surveys');
+        }else {
+            res.redirect('http://localhost:3000/surveys');
+        }
+      
     });
     app.get('/api/current-user', (req,res) => {
         res.send(req.user);
@@ -17,7 +24,7 @@ module.exports = app => {
 
     app.get('/api/logout',(req,res) => {
         req.logout();
-        res.redirect('/surveys/new');
+        res.redirect('/');
     });
 
 

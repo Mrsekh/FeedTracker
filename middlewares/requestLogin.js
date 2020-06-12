@@ -1,0 +1,9 @@
+
+// checked for logged in user custom middleware
+module.exports = (req,res,next) => {
+    if(!req.user) {
+        return res.status(401).send({error:'You must logged in'});
+    }
+
+    next();
+}
